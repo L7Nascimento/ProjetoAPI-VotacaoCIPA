@@ -1,0 +1,21 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+
+# IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+*.class
+*.log
+*.jar
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Spring Boot
+application.properties
+application.yml
