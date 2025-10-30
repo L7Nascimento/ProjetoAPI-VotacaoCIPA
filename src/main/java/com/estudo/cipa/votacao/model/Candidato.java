@@ -1,19 +1,35 @@
 package com.estudo.cipa.votacao.model;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Candidato {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private int numero;
     private String nome;
     private String setor;
-    private String foto;
+    private String fotoUrl; // Link para a foto do candidato
 
-    // construtor
-    public Candidato( int numero, String nome, String setor, String foto){
+    public Candidato() {}
+
+    public Candidato(int numero, String nome, String setor, String fotoUrl) {
         this.numero = numero;
         this.nome = nome;
         this.setor = setor;
-        this.foto = foto;
+        this.fotoUrl = fotoUrl;
     }
+
     // Getters e Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
     public int getNumero() { return numero; }
     public void setNumero(int numero) { this.numero = numero; }
 
@@ -23,7 +39,6 @@ public class Candidato {
     public String getSetor() { return setor; }
     public void setSetor(String setor) { this.setor = setor; }
 
-    public String getFoto() { return foto; }
-    public void setFoto(String foto) { this.foto = foto; }
-
+    public String getFotoUrl() { return fotoUrl; }
+    public void setFotoUrl(String fotoUrl) { this.fotoUrl = fotoUrl; }
 }
