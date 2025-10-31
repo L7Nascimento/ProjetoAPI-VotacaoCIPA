@@ -1,31 +1,42 @@
 package com.estudo.cipa.votacao.service;
-//imports
+
 import com.estudo.cipa.votacao.model.Candidato;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import com.estudo.cipa.votacao.repository.CandidatoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Service
 public class CandidatoService {
-    private final List<Candidato> candidatos = new ArrayList<>();
 
-    public CandidatoService(){
-        candidatos.add(new Candidato(1,"Maria Helena", "RH","foto/MariaH.jpg"));
-        candidatos.add(new Candidato(2,"Pedro Valença", "Bloco 5","foto/PedroV.jpg"));
-        candidatos.add(new Candidato(3,"Agnaldo Raiol", "Seguranca","foto/AgnaldoR.jpg"));
+    @Autowired
+    private CandidatoRepository candidatoRepository;
 
+    // Salvar ou atualizar candidato
+    public Candidato salvar(Candidato candidato) {
+        return candidatoRepository.save(candidato);
     }
 
-    //Metodo que lista todos os candidatos -  tipo list
+    // Buscar por ID
+    public Candidato buscarPorId(Long id) {
+        return candidatoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Candidato não encontrado com id: " + id));
+    }
 
+    // Buscar por número do candidato
+    public Candidato buscarPorNumero(Integer numero) {
+        return candidatoRepository.findByNumero(numero)
+                .orElseThrow(() -> new RuntimeException("Candidato não encontrado com número: " + numero));
+    }
+
+    // Listar todos os candidatos
     public List<Candidato> listarTodos() {
-        return candidatos;
+        return candidatoRepository.findAll();
     }
 
-    //Metodo que encontra atraves de Stream o primeiro candidato com o parametro numero passado e retorna um tratamento de erro
-    public Candidato buscarPorNumero(int numero){
-        return candidatos.stream().filter(c -> c.getNumero() == numero).findFirst().orElse(null);
+    // Deletar por ID
+    public void excluir(Long id) {
+        candidatoRepository.deleteById(id);
     }
-
 }
