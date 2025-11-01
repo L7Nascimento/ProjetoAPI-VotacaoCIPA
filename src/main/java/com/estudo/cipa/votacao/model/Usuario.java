@@ -1,25 +1,17 @@
-
 package com.estudo.cipa.votacao.model;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-@Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class Usuario {
+@Entity
+@EqualsAndHashCode(callSuper = true)
+public class Usuario extends Funcionario {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String nome;
-
-    @Column(unique = true)
-    private String matricula;
-
-    private boolean ativo;
+    private String login;
+    private String senha;
+    private String papel; // ex: "ADMIN" ou "GESTOR"
 }
-

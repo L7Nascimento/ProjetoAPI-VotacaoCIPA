@@ -1,14 +1,17 @@
 package com.estudo.cipa.votacao.model;
 
 import jakarta.persistence.Entity;
+
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@EqualsAndHashCode(callSuper = true)
 public class Candidato extends Funcionario {
 
-    private String proposta;
-    private int numero; // número de identificação na urna
+    private Integer numero;
+    private String partido;
 }
